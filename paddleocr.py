@@ -16,7 +16,7 @@ import os
 import sys
 import importlib
 
-__dir__ = os.path.dirname(__file__)
+__dir__ = os.path.dirname(os.path.abspath(__file__))
 
 import paddle
 
@@ -27,17 +27,17 @@ import logging
 import numpy as np
 from pathlib import Path
 
-tools = importlib.import_module('.', 'tools')
+ocrtools = importlib.import_module('.', 'ocrtools')
 ppocr = importlib.import_module('.', 'ppocr')
 ppstructure = importlib.import_module('.', 'ppstructure')
 
-from tools.infer import predict_system
+from ocrtools.infer import predict_system
 from ppocr.utils.logging import get_logger
 
 logger = get_logger()
 from ppocr.utils.utility import check_and_read, get_image_file_list
 from ppocr.utils.network import maybe_download, download_with_progressbar, is_link, confirm_model_dir_url
-from tools.infer.utility import draw_ocr, str2bool, check_gpu
+from ocrtools.infer.utility import draw_ocr, str2bool, check_gpu
 from ppstructure.utility import init_args, draw_structure_result
 from ppstructure.predict_system import StructureSystem, save_structure_res, to_excel
 
